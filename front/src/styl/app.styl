@@ -1,0 +1,89 @@
+body
+  background-color c-bg
+a
+  color unset
+  text-decoration none
+  &:hover
+    text-decoration initial
+.view, .page
+  position relative
+  margin 0 auto
+  padding-top 10px
+  padding-bottom 60px
+  transition all .2s
+  .main
+    margin-right 305px
+  aside
+    width 295px
+    min-height 700px
+    margin-bottom 10px
+
+.full-screen
+  width 100%
+.wide-screen
+  width 90%
+  max-width 1400px
+  min-width 960px
+  margin 0 auto
+
+.rad-4 
+  border-radius r-block
+.block
+  background-color white
+  border-radius r-block
+  margin-bottom 10px
+  box-sizing border-box
+  &:hover
+    box-shadow 0 0 8px 0 rgba(232,237,250,.6), 0 2px 4px 0 rgba(232,237,250,.5)
+  header, nav, footer
+    background-color #f6f6f6
+    height h-block-header
+  >header, >nav, >div, >footer
+    &:last-child
+      border-bottom-left-radius: r-block
+      border-bottom-right-radius: r-block
+      overflow hidden
+    &:first-child
+      border-top-left-radius: r-block
+      border-top-right-radius: r-block
+      overflow hidden
+
+pads = 5, 10, 15, 20, 25, 30
+for e in pads
+  .pad-{e}
+    padding e px
+  .pad-tb-{e}
+    padding-top e px
+    padding-bottom e px
+  .pad-lr-{e}
+    padding-left e px
+    padding-right e px
+
+input[type="text"]
+  width 100%
+  margin 10px 0
+  border none
+  border-bottom 2px solid rgba(c-ios-purple, .4)
+  &:focus
+    border-bottom-color c-ios-purple
+
+/** INPUT */
+label
+  cursor pointer
+  
+[type="text"], textarea
+  box-sizing border-box
+  display inline-block
+
+.avatar
+  border-radius r-block
+  overflow hidden
+  img
+    width 100%
+
+.pager
+  span
+    margin 7.5px 0
+    padding 4px
+    max-width 45%
+    font-size .9em

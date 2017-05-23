@@ -1,0 +1,9 @@
+{
+  "name": "arknodejs_community_vue",
+  "short_name": "Arknodejs",
+  "icons": [],
+  "start_url": "/",
+  "background_color": "#f2f3f5",
+  "display": "standalone",
+  "theme_color": "#f60"
+}

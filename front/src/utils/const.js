@@ -1,0 +1,1 @@
+exports.MIN_IMG = 'data:image/gif;base64,R0lGODdhAQABAPAAAP%2F%2F%2FwAAACwAAAAAAQABAEACAkQBADs%3D'

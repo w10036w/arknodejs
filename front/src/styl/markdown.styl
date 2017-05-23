@@ -1,0 +1,133 @@
+// code highlight
+.md-body
+  a
+    color c-ios-blue
+    text-decoration none
+    &:hover
+      text-decoration underline
+  twitterwidget
+    margin-left auto
+    margin-right auto
+  img
+    max-width 100%
+    border-radius r-block
+  pre
+    background #f7f7f7
+    margin 0
+    padding .85em 1em
+    margin-bottom 1.275em
+    overflow-x auto
+  code[class*="lang-"],
+  pre[class*="lang-"]
+    color black
+    text-shadow 0 1px white
+    font-family Menlo, "Source Code Pro", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace
+    text-align left
+    white-space pre
+    word-spacing normal
+    word-break normal
+    word-wrap normal
+    line-height 1.2
+    -moz-tab-size 2
+    -o-tab-size 2
+    tab-size 2
+    -webkit-hyphens none
+    -moz-hyphens none
+    -ms-hyphens none
+    hyphens none
+
+  pre[class*="lang-"]-moz-selection, pre[class*="lang-"] -moz-selection,
+  code[class*="lang-"]-moz-selection, code[class*="lang-"] -moz-selection
+    text-shadow none
+    background #b3d4fc
+
+  pre[class*="lang-"]selection, pre[class*="lang-"] selection,
+  code[class*="lang-"]selection, code[class*="lang-"] selection
+    text-shadow none
+    background #b3d4fc
+
+  /* Code blocks */
+  pre[class*="lang-"]
+    padding 1em
+    margin .5em 0
+    overflow auto
+
+  //not(pre) > code[class*="lang-"], pre[class*="lang-"]
+  //  background #f5f2f0
+  //
+  ///* Inline code */
+  //not(pre) > code[class*="lang-"]
+  //  padding .1em
+  //  border-radius .3em
+  //  white-space normal
+
+  .hljs-comment,
+  .hljs-prolog,
+  .hljs-doctype,
+  .hljs-cdata
+    color slategray
+
+
+  .hljs-punctuation
+    color #999
+
+
+  .namespace
+    opacity .7
+
+
+  .hljs-property,
+  .hljs-tag,
+  .hljs-boolean,
+  .hljs-number,
+  .hljs-constant,
+  .hljs-symbol,
+  .hljs-deleted
+    color #905
+
+
+  .hljs-selector,
+  .hljs-attr-name,
+  .hljs-string,
+  .hljs-char,
+  .hljs-builtin,
+  .hljs-inserted
+    color #690
+
+
+  .hljs-operator,
+  .hljs-entity,
+  .hljs-url,
+  .lang-css .hljs-string,
+  .style .hljs-string
+    color #a67f59
+    background hsla(0, 0%, 100%, .5)
+
+
+  .hljs-atrule,
+  .hljs-attr-value,
+  .hljs-keyword
+    color #07a
+
+
+  .hljs-function
+    color #DD4A68
+
+
+  .hljs-regex,
+  .hljs-important,
+  .hljs-variable
+    color #e90
+
+
+  .hljs-important,
+  .hljs-bold
+    font-weight bold
+
+  .hljs-italic
+    font-style italic
+
+  .hljs-entity
+    cursor help
+
+

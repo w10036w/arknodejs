@@ -1,0 +1,77 @@
+{
+  "name": "arknodejs_producer_nodejs",
+  "version": "0.0.1",
+  "description": "arknodejs api services",
+  "debug": false,
+  "keywords": [
+    "koa",
+    "koa2",
+    "mongodb",
+    "qiniu",
+    "graphql",
+    "docker",
+    "websocket"
+  ],
+  "author": "Ark <w10036w@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w10036w/koa-mongo-graphql-rest"
+  },
+  "sub": "/api",
+  "port": 8000,
+  "database": "mongo",
+  "cacheDb": "redis",
+  "cdn": "qiniu",
+  "scripts": {
+    "start": "NODE_ENV=production node index",
+    "dev": "nodemon index.js",
+    "prod": "npm install --only=production",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register --recursive",
+    "test:watch": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register --recursive --bail --watch",
+    "test:report": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register --recursive --reporter mochawesome"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.0",
+    "bluebird": "^3.4.6",
+    "graphql": "^0.5.0",
+    "highlight.js": "^9.9.0",
+    "jsonwebtoken": "^7.1.9",
+    "koa": "^2.0.1",
+    "koa-bodyparser": "^3.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-session": "^3.0.0",
+    "koa-graphql": "^0.6.0",
+    "koa-jwt": "^1.3.1",
+    "koa-passport": "^2.2.2",
+    "koa-redis": "^2.1.3",
+    "koa-router": "^7.0.1",
+    "lodash": "^4.15.0",
+    "log4js": "^0.6.38",
+    "marked": "^0.3.6",
+    "mocha": "^2.4.5",
+    "moment": "^2.17.1",
+    "mongoose": "^4.5.9",
+    "passport-facebook": "^2.1.1",
+    "passport-github": "^1.1.0",
+    "passport-google-auth": "^1.0.1",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "passport-twitter-email": "^1.0.3",
+    "passport-wechat": "^2.0.4",
+    "qiniu": "^6.1.13",
+    "qn": "^1.3.0",
+    "qs": "^6.3.0",
+    "redis": "^2.6.5",
+    "validator": "^6.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=7.0.0",
+    "npm": ">=4.0.0"
+  }
+}

@@ -1,0 +1,36 @@
+.log
+*.swp
+*.iml
+.DS_Store
+.idea
+.vscode
+
+# prod config
+/back/config/prod.js
+
+# node_modules
+/admin/node_modules/
+/front/node_modules/
+/back/node_modules/
+
+# logs
+/admin/logs/
+/front/logs/
+/back/logs/
+
+# dist
+#/admin/dist/
+#/front/dist/
+#/back/dist/
+
+# test
+/admin/test/
+/front/test/
+/back/test/
+
+# data
+/admin/data/
+/front/data/
+/back/data/
+
+# static

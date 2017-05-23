@@ -1,0 +1,8 @@
+apps:
+  - script      : index.js
+    name        : 'blog-backend'
+    instances   : 1
+    exec_mode   : cluster
+    watch       : true
+    env         : NODE_ENV: production
+    env_dev     : NODE_ENV: development
