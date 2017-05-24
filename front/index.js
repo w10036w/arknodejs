@@ -7,9 +7,6 @@ const serialize = require('serialize-javascript')
 const resolve = file => path.resolve(__dirname, file)
 
 const isProd = process.env.NODE_ENV === 'production'
-const getRobotsFromConfig = require('./plugin/robots.js')
-//const { api: sitemapApi, getSitemapFromBody } = require('./plugin/sitemap.js')
-//const { api: rssApi, getRssBodyFromBody } = require('./plugin/rss.js')
 const serverInfo =
   `express/${require('express/package.json').version} ` +
   `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
