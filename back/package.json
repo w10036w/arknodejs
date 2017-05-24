@@ -67,9 +67,6 @@
     "redis": "^2.6.5",
     "validator": "^6.2.1"
   },
-  "devDependencies": {
-    "babel-core": "^6.0.0"
-  },
   "engines": {
     "node": ">=7.0.0",
     "npm": ">=4.0.0"

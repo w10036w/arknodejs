@@ -7,9 +7,9 @@ clean:
 	@echo	'node_modules clean complete'
 
 install:
-	@cd back && npm install
+	@cd back && npm install --production
 	@cd ..
-	@cd front && npm install
+	@cd front && npm install --production
 	@cd ..
 	@echo	'npm install complete'
 
