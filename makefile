@@ -7,7 +7,6 @@ clean:
 	@echo	'node_modules clean complete'
 
 install:
-
 	@cd back && npm install
 	@cd ..
 	@cd front && npm install
@@ -21,7 +20,7 @@ start:
 	@echo 'start front'
 	@cd front && pm2 start pm2.json --env production
 	@cd ..
-	
+
 dev:
 	@echo 'start back'
 	@cd back && pm2 start pm2.json
