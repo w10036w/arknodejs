@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueMeta from 'vue-meta'
+//import VueMeta from 'vue-meta'
 Vue.use(VueRouter)
-Vue.use(VueMeta)
+//Vue.use(VueMeta)
 
 // base pages
 import Page404 from '../pages/404.vue'
