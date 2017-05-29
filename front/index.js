@@ -74,13 +74,13 @@ app.get('*', (req, res) => {
   const context = { url: req.url }
   const renderStream = renderer.renderToStream(context)
 
-  // renderStream.once('data', () => {
-  //   const metaMarker = '<!-- meta -->'
-  //   const { title, link, meta } = context.meta.inject() // style, script, noscript
-  //   const metaData = `${title.text()}${meta.text()}${link.text()}`
-  //   const head = indexHTML.head.replace(metaMarker, metaData)
-  //   res.write(head)
-  // })
+  renderStream.once('data', () => {
+    const metaMarker = '<!-- meta -->'
+    const { title, link, meta } = context.meta.inject() // style, script, noscript
+    const metaData = `${title.text()}${meta.text()}${link.text()}`
+    const head = indexHTML.head.replace(metaMarker, metaData)
+    res.write(head)
+  })
 
   renderStream.on('data', chunk => {
     res.write(chunk)
