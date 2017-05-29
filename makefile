@@ -7,11 +7,11 @@ clean:
 	@echo	'node_modules clean complete'
 
 install:
-	@cd back && npm install
+	@cd back && npm i --only=production
 	@cd ..
-	@cd front && npm install
+	@cd front && npm i --only=production
 	@cd ..
-	@echo	'npm install complete'
+	@echo	'npm install production complete'
 
 start:
 	@echo 'start back'
