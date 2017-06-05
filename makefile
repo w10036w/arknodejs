@@ -6,7 +6,7 @@ prepare:
 	@apt-get install nginx
 	@echo 'nginx installed'
 	@touch /etc/nginx/sites-available/arknodejs.com && cp -i /var/www/arknodejs/config/arknodejs.com /etc/nginx/sites-available/
-	@ln -s /etc/nginx/sites-enabled/arknodejs.com /etc/nginx/sites-available/arknodejs.com
+	@ln -s /etc/nginx/sites-available/arknodejs.com /etc/nginx/sites-enabled/arknodejs.com
 	@echo 'nginx configured'
 
 	@echo 'preparing certbot...'
