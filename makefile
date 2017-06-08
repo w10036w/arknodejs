@@ -61,7 +61,7 @@ ifndef NODEJS
 	@apt-get install -y nodejs
 endif
 	@echo "$(C_GREEN)nodejs installed$(C_RESET)"
-PM2 := $(shell pm2 -v)
+PM2 := $(shell pm2 2>/dev/null)
 prep-pm2:
 ifndef PM2
 	@echo "$(C_GREEN)pm2 installing...$(C_RESET)"
