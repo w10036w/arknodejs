@@ -13,9 +13,12 @@ server {
   server_name  arknodejs.com;
 
   ssl                   on;
-  ssl_certificate       /usr/local/etc/nginx/ssl/arknodejs.crt;
-  ssl_certificate_key   /usr/local/etc/nginx/ssl/arknodejs.key;
-  
+  ssl_certificate /etc/letsencrypt/live/arknodejs.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/arknodejs.com/privkey.pem;
+  #add_header Strict-Transport-Security max-age=63072000;
+  #add_header X-Frame-Options DENY;
+  #add_header X-Content-Type-Options nosniff;
+
   location / {
     proxy_pass http://127.0.0.1:8002;
     # proxy_pass http://127.0.0.1:8003;
