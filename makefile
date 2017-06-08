@@ -2,19 +2,32 @@
 
 # setup vars
 DOMAIN = arknodejs.com
-all: prep service clean install start
+NODEJS := $(shell node -v)
 
-# tput color code:
-# 0 black
-# 1 red
-# 2 green
-# 3 yellow
-# 4 blue
-# 5 magenta
-# 6 cyan
-# 7 white
-# $(tput setab 7) [set background color]
+COLORS:=$(shell tput colors 2> /dev/null)
+ifeq ($(COLORS), 256)
+    COLOR_RESET=\033[0;39;49m
+    COLOR_GREN=\033[38;5;118m
+    COLOR_BLUE=\033[38;5;81m
+    COLOR_RED=\033[38;5;161m
+    COLOR_PURP=\033[38;5;135m
+    COLOR_ORNG=\033[38;5;208m
+    COLOR_YELO=\033[38;5;227m
+    COLOR_GRAY=\033[38;5;245m
+    COLOR_WHIT=\033[38;5;15m
+else ifeq ($(COLORS), 16)
+    COLOR_RESET=\033[0;39;49m
+    COLOR_GREN=\033[0;32m
+    COLOR_BLUE=\033[0;34m
+    COLOR_RED=\033[0;31m
+    COLOR_PURP=\033[0;35m
+    COLOR_ORNG=\033[1;31m
+    COLOR_YELO=\033[0;33m
+    COLOR_GRAY=\033[1;30m
+    COLOR_WHIT=\033[1;37m
+endif
 
+all: prep service clean install service-start start
 prep: prep-nginx prep-certbot prep-mongo prep-nodejs prep-pm2
 
 prep-nginx:
@@ -22,7 +35,7 @@ prep-nginx:
 	@apt-get update
 	@apt-get install nginx
 	@echo -e "\x1b[1m$(tput setaf 2)nginx installed$(tput sgr 0)"
-	@touch /etc/nginx/sites-available/arknodejs.com && cp -b /var/www/arknodejs/config/arknodejs.com /etc/nginx/sites-available/
+	@cp -b /var/www/arknodejs/config/arknodejs.com /etc/nginx/sites-available/
 	@ln -s /etc/nginx/sites-available/arknodejs.com /etc/nginx/sites-enabled/arknodejs.com
 	@echo -e "\x1b[1m$(tput setaf 2)nginx configured$(tput sgr 0)"
 prep-certbot:
@@ -41,19 +54,26 @@ prep-mongo:
 	@echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 	@apt-get update && apt-get install -y mongodb-org
 	@echo -e "\x1b[1m$(tput setaf 2)mongo installed$(tput sgr 0)"
+
 prep-nodejs:
+ifndef NODEJS
 	@echo -e "\x1b[1m$(tput setaf 3)preparing nodejs...$(tput sgr 0)"
 	@curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 	@apt-get install -y nodejs
-	@echo -e "\x1b[1m$(tput setaf 2)node installed$(tput sgr 0)"
+	@echo "$(COLOR_GREN)nodejs installed$(COLOR_RESET)"
+endif
+	@echo "$(COLOR_GREN)nodejs installed already$(COLOR_RESET)"
 prep-pm2:
 	@echo -e "\x1b[1m$(tput setaf 3)preparing pm2...$(tput sgr 0)"
 	@npm i -g pm2
 	@echo -e "\x1b[1m$(tput setaf 2)pm2 installed$(tput sgr 0)"
 
-service:
+service-start:
 	@service mongod start
 	@nginx
+service-end:
+	@service mongod stop
+	@nginx -s stop
 
 test: 
 	@echo "<-- nginx test -->"
@@ -103,3 +123,16 @@ version:
 	@nginx -v
 	@echo "node" && node -v
 	@echo "npm" && npm -v
+
+
+
+# tput color code:
+# 0 black
+# 1 red
+# 2 green
+# 3 yellow
+# 4 blue
+# 5 magenta
+# 6 cyan
+# 7 white
+# $(tput setab 7) [set background color]
