@@ -2,29 +2,28 @@
 
 # setup vars
 DOMAIN = arknodejs.com
-NODEJS := $(shell node -v)
 
 COLORS:=$(shell tput colors 2> /dev/null)
 ifeq ($(COLORS), 256)
-    COLOR_RESET=\033[0;39;49m
-    COLOR_GREN=\033[38;5;118m
-    COLOR_BLUE=\033[38;5;81m
-    COLOR_RED=\033[38;5;161m
-    COLOR_PURP=\033[38;5;135m
-    COLOR_ORNG=\033[38;5;208m
-    COLOR_YELO=\033[38;5;227m
-    COLOR_GRAY=\033[38;5;245m
-    COLOR_WHIT=\033[38;5;15m
+    C_RESET=\033[0;39;49m
+    C_GREEN=\033[38;5;118m
+    C_BLUE=\033[38;5;81m
+    C_RED=\033[38;5;161m
+    C_PURPLE=\033[38;5;135m
+    C_ORANGE=\033[38;5;208m
+    C_YELLOW=\033[38;5;227m
+    C_GREY=\033[38;5;245m
+    C_WHITE=\033[38;5;15m
 else ifeq ($(COLORS), 16)
-    COLOR_RESET=\033[0;39;49m
-    COLOR_GREN=\033[0;32m
-    COLOR_BLUE=\033[0;34m
-    COLOR_RED=\033[0;31m
-    COLOR_PURP=\033[0;35m
-    COLOR_ORNG=\033[1;31m
-    COLOR_YELO=\033[0;33m
-    COLOR_GRAY=\033[1;30m
-    COLOR_WHIT=\033[1;37m
+    C_RESET=\033[0;39;49m
+    C_GREEN=\033[0;32m
+    C_BLUE=\033[0;34m
+    C_RED=\033[0;31m
+    C_PURPLE=\033[0;35m
+    C_ORANGE=\033[1;31m
+    C_YELLOW=\033[0;33m
+    C_GREY=\033[1;30m
+    C_WHITE=\033[1;37m
 endif
 
 all: prep service clean install service-start start
@@ -54,20 +53,21 @@ prep-mongo:
 	@echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 	@apt-get update && apt-get install -y mongodb-org
 	@echo -e "\x1b[1m$(tput setaf 2)mongo installed$(tput sgr 0)"
-
+NODEJS := $(shell node -v)
 prep-nodejs:
 ifndef NODEJS
-	@echo -e "\x1b[1m$(tput setaf 3)preparing nodejs...$(tput sgr 0)"
+	@echo "$(C_BLUE)nodejs installing...$(C_RESET)"
 	@curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 	@apt-get install -y nodejs
-	@echo "$(COLOR_GREN)nodejs installed$(COLOR_RESET)"
 endif
-	@echo "$(COLOR_GREN)nodejs installed already$(COLOR_RESET)"
+	@echo "$(C_GREEN)nodejs installed$(C_RESET)"
+PM2 := $(shell pm2 -v)
 prep-pm2:
-	@echo -e "\x1b[1m$(tput setaf 3)preparing pm2...$(tput sgr 0)"
+ifndef PM2
+	@echo "$(C_GREEN)pm2 installing...$(C_RESET)"
 	@npm i -g pm2
-	@echo -e "\x1b[1m$(tput setaf 2)pm2 installed$(tput sgr 0)"
-
+endif
+	@echo "$(C_GREEN)pm2 installed$(C_RESET)"
 service-start:
 	@service mongod start
 	@nginx
