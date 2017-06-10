@@ -1,3 +1,4 @@
+## for Ubuntu 16.04
 # apt-get install make
 
 # setup vars
@@ -28,32 +29,37 @@ endif
 
 all: prep service clean install service-start start
 prep: prep-nginx prep-certbot prep-mongo prep-nodejs prep-pm2
-
+NGINX := $(shell nginx 2>/dev/null)
 prep-nginx:
-	@echo -e "\x1b[1m$(tput setaf 3)preparing nginx...$(tput sgr 0)"
+ifndef NGINX
+	@echo "$(C_BLUE)nginx installing...$(C_RESET)"
 	@apt-get update
 	@apt-get install nginx
-	@echo -e "\x1b[1m$(tput setaf 2)nginx installed$(tput sgr 0)"
+endif
+	@echo "$(C_GREEN)nginx installed$(C_RESET)"
 	@cp -b /var/www/arknodejs/config/arknodejs.com /etc/nginx/sites-available/
 	@ln -s /etc/nginx/sites-available/arknodejs.com /etc/nginx/sites-enabled/arknodejs.com
-	@echo -e "\x1b[1m$(tput setaf 2)nginx configured$(tput sgr 0)"
+	@echo "$(C_GREEN)nginx configured$(C_RESET)"
+CERTBOT := $(shell certbot 2>/dev/null)
 prep-certbot:
-	@echo -e "\x1b[1m$(tput setaf 3)preparing certbot...$(tput sgr 0)"
+ifndef CERTBOT
+	@echo "$(C_BLUE)certbot installing...$(C_RESET)"
 	@apt-get install software-properties-common
 	@add-apt-repository ppa:certbot/certbot
 	@apt-get update && apt-get install certbot
-	@echo -e "\x1b[1m$(tput setaf 2)certbot installed$(tput sgr 0)"
-# @mkdir /etc/letsencrypt/configs && cp -i /var/www/arknodejs/config/arknodejs.com.conf /etc/letsencrypt/configs/
-#	@certbot -c /etc/letsencrypt/configs/arknodejs.com.conf certonly
+endif
+	@echo "$(C_GREEN)certbot installed$(C_RESET)"
 	@certbot certonly --standalone -d $(DOMAIN)
-	@echo -e "\x1b[1m$(tput setaf 2)certbot cert generated$(tput sgr 0)"
+	@echo "$(C_GREEN)certbot certificate generated$(C_RESET)"
+MONGO := $(shell mongod 2>/dev/null)
 prep-mongo:
-	@echo -e "\x1b[1m$(tput setaf 3)preparing mongo...$(tput sgr 0)"
+ifndef MONGO
+	@echo "$(C_BLUE)mongodb installing...$(C_RESET)"
 	@apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 	@echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 	@apt-get update && apt-get install -y mongodb-org
-	@echo -e "\x1b[1m$(tput setaf 2)mongo installed$(tput sgr 0)"
-NODEJS := $(shell node -v)
+	@echo "$(C_GREEN)mongodb installed$(C_RESET)"
+NODEJS := $(shell node 2>/dev/null)
 prep-nodejs:
 ifndef NODEJS
 	@echo "$(C_BLUE)nodejs installing...$(C_RESET)"
