@@ -60,7 +60,7 @@ ifndef MONGO
 	@apt-get update && apt-get install -y mongodb-org
 	@echo "$(C_GREEN)mongodb installed$(C_RESET)"
 endif
-NODEJS := $(shell node 2>/dev/null)
+NODEJS := $(shell node -v)
 prep-nodejs:
 ifndef NODEJS
 	@echo "$(C_BLUE)nodejs installing...$(C_RESET)"
