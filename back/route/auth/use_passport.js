@@ -187,7 +187,6 @@ module.exports = (app, r, providers) => {
   providers.includes('twitter') && add_twitter(passport, r)
   providers.includes('github') && add_github(passport, r)
 
-
   app.use(session({}, app))
   app.use(passport.initialize())
   app.use(passport.session())

@@ -4,7 +4,7 @@ server {
   return         301 https://$server_name$request_uri;
 }
 
-proxy_cache_path /usr/local/etc/nginx/tmp levels=1:2 keys_zone=my_zone:10m inactive=60m;
+proxy_cache_path /etc/nginx/tmp levels=1:2 keys_zone=my_zone:10m inactive=60m;
 proxy_cache_key "$scheme$request_method$host$request_uri";
 
 server {

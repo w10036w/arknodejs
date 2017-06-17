@@ -101,18 +101,22 @@ install:
 	@cd ..
 	@echo	"npm install production complete"
 
-start:
+start: start-front start-back
+
+start-back:
 	@echo "start back"
 	@cd back && pm2 start pm2.json --env production
-	@cd ..
+start-front:
 	@echo "start front"
 	@cd front && pm2 start pm2.json --env production
 	@cd ..
 
-dev:
+dev: dev-back dev-front
+dev-back:
 	@echo "start back"
 	@cd back && pm2 start pm2.json
 	@cd ..
+dev-front:
 	@echo "start front"
 	@cd front && pm2 start pm2.json
 	@cd ..
